@@ -16,7 +16,7 @@ body {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: skyblue;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -35,21 +35,22 @@ body {
 }
 
 .buttons button.toggle {
-    background-color: #4caf50;
+    background-color: red;
     color: white;
 }
 
 .buttons button.lap {
-    background-color: #2196f3;
+    background-color: green;
     color: white;
 }
 
 .buttons button.reset {
-    background-color: #f44336;
+    background-color:purple;
     color: white;
 }
 
 .lapList {
     list-style-type: none;
     padding: 0;
+    color: white;
 }
