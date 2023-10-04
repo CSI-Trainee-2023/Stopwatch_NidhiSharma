@@ -3,30 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StopWatch</title>
+    <title>Stopwatch</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-
-    <div class = "container">
-        <h1 class="timer">
-            <span class="minutes"> 00 </span>:
-            <span class="seconds">00</span>.
-            <span class="miliseconds">000</span>
-
-        </h1>
-
-        <ol class="lapBox"></ol>
-        <div class="bottomPart">
-            <div class="buttons">
-                <button class="reset">Reset</button>
-                <button class="toggle">Start</button>
-                <button class="lap">Lap</button>
-            </div>
+    <div class="container">
+        <h1 class="timer">00:00.000</h1>
+        <div class="buttons">
+            <button class="toggle">Start</button>
+            <button class="lap">Lap</button>
+            <button class="reset">Reset</button>
         </div>
+        <ul class="lapList"></ul>
     </div>
     <script src="stopwatch.js"></script>
-    <script src="main.js"></script>
 </body>
 </html>

@@ -6,103 +6,50 @@
 
 }
 
-body{
-    height: 100vh;
-    background-color: black;
-    display: flex;
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 100px auto;
 }
 
-.container{
-    margin: auto;
-    width:500px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    color: white;
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.timer{
-    font-size: 76px;
-    font-weight: lighter;
-    color: #fff;
-    width: 410px;
-    margin-left: 20px;
-
+.timer {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #333;
 }
 
-.bottomPart{
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.buttons{
-    width:300px;
-    height:100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.buttons button{
-    width: 80px;
-    height: 80px;
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    text-transform: uppercase;
-    font-weight: bold;
+.buttons button {
+    font-size: 18px;
+    margin: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    outline: none;
-    box-shadow: 0px 20px 30px 0px rgb(0,0,0,0,0.5);
 }
 
-
-.buttons .toggle{
-    transition: all 0.3s ease;
-    background-color: green;
-    z-index: 1;
-}
-
-
-.buttons .toggle:active,
-.buttons .reset:active,
-.buttons .lap:active{
-    transform: scale(0.9);
-
-}
-
-.buttons .toggle.on{
-    background-color: red;
-
-}
-
-.buttons .reset,
-.buttons .lap{
-    transition: all 0.3s ease;
-}
-
-.lapBox{
-    width: 200px;
-    height: 200px;
+.buttons button.toggle {
+    background-color: #4caf50;
     color: white;
-    padding-left: 30px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
 }
 
-.lapItem{
-    width: 120px;
-    height:30px;
-    
+.buttons button.lap {
+    background-color: #2196f3;
+    color: white;
+}
+
+.buttons button.reset {
+    background-color: #f44336;
+    color: white;
+}
+
+.lapList {
+    list-style-type: none;
+    padding: 0;
 }
