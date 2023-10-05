@@ -49,3 +49,22 @@ function reset() {
 toggleButton.addEventListener('click', toggle);
 lapButton.addEventListener('click', lap);
 resetButton.addEventListener('click', reset);
+
+
+// x is for start/stop
+// c is for reset
+// l is for lap
+
+function handleKeyPress(event) {
+    if (event.ctrlKey) {
+        if (event.key === 'x') {
+            toggle();
+        } else if (event.key === 'c') {
+            reset();
+        } else if (event.key === 'l') {
+            lap();
+        }
+    }
+}
+
+document.addEventListener('keydown', handleKeyPress);
