@@ -1,69 +1,92 @@
-let timerInterval;
-let isRunning = false;
-let lapCounter = 1;
+let timer;
+let running = false;
+let startTime = 0;
+let lapTime = 0;
 
-const timerElement = document.querySelector('.timer');
-const toggleButton = document.querySelector('.toggle');
-const lapButton = document.querySelector('.lap');
-const resetButton = document.querySelector('.reset');
-const lapList = document.querySelector('.lapList');
-
-function toggle() {
-    if (isRunning) {
-        clearInterval(timerInterval);
-        startStopButton.textContent = 'Start';
-        startStopButton.classList.remove('stop');
+function startStopTimer() {
+    if (running) {
+        stopTimer();
     } else {
-        timerInterval = setInterval(updateTimer, 10);
-        toggleButton.textContent = 'Stop';
-        toggleButton.classList.add('stop');
+        startTimer();
     }
-    isRunning = !isRunning;
 }
 
-function updateTimer() {
-    const currentTime = timerElement.textContent.split(/[:.]+/).map(Number);
-    const totalMilliseconds = (currentTime[0] * 60 + currentTime[1]) * 1000 + currentTime[2] + 10;
-    const minutes = Math.floor(totalMilliseconds / (60 * 1000));
-    const seconds = Math.floor((totalMilliseconds % (60 * 1000)) / 1000);
-    const milliseconds = totalMilliseconds % 1000;
-    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+function lapResetTimer() {
+    if (running) {
+        lapTimer();
+    } else {
+        resetTimer();
+    }
 }
 
-function lap() {
-    const lapTime = document.createElement('li');
-    lapTime.textContent = `Lap ${lapCounter++}: ${timerElement.textContent}`;
-    lapList.appendChild(lapTime);
+function startTimer() {
+    startTime = Date.now() - (lapTime ? lapTime : 0);
+    timer = setInterval(updateDisplay, 10);
+    running = true;
+    document.getElementById('startStop').textContent = 'Stop';
+    document.getElementById('lapReset').textContent = 'Lap';
 }
 
-function reset() {
-    clearInterval(timerInterval);
-    timerElement.textContent = '00:00.000';
-    toggleButton.textContent = 'Start';
-    toggleButton.classList.remove('stop');
-    isRunning = false;
-    lapCounter = 1;
-    lapList.innerHTML = '';
+function stopTimer() {
+    clearInterval(timer);
+    running = false;
+    document.getElementById('startStop').textContent = 'Start';
+    document.getElementById('lapReset').textContent = 'Reset';
 }
 
-toggleButton.addEventListener('click', toggle);
-lapButton.addEventListener('click', lap);
-resetButton.addEventListener('click', reset);
+function lapTimer() {
+    if (running) {
+        lapTime = Date.now() - startTime;
+        let lapDisplay = document.createElement('div');
+        lapDisplay.classList.add('lap-display'); // Add a class for lap displays
+        lapDisplay.textContent = formatTime(lapTime);
+        document.body.appendChild(lapDisplay);
+    }
+}
+
+function resetTimer() {
+    stopTimer();
+    startTime = 0;
+    lapTime = 0;
+    document.querySelector('.stopwatch').textContent = '00:00:00.00'; // Update display
+    let lapDisplays = document.querySelectorAll('.lap-display');
+    lapDisplays.forEach(display => display.remove());
+}
+
+
+
+
+function updateDisplay() {
+    let currentTime = Date.now() - startTime;
+    let formattedTime = formatTime(currentTime);
+    document.querySelector('.stopwatch').textContent = formattedTime;
+}
+
+
+
+function formatTime(time) {
+    let date = new Date(time);
+    let hours = date.getUTCHours().toString().padStart(2, '0');
+    let minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    let seconds = date.getUTCSeconds().toString().padStart(2, '0');
+    let milliseconds = (date.getUTCMilliseconds() / 10).toFixed(0).toString().padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
+document.getElementById('startStop').addEventListener('click', startStopTimer);
+document.getElementById('lapReset').addEventListener('click', lapResetTimer);
 
 
 // x is for start/stop
-// c is for reset
-// l is for lap
+// c is for lap/reset
 
 function handleKeyPress(event) {
     if (event.ctrlKey) {
         if (event.key === 'x') {
-            toggle();
+            startStopTimer();
         } else if (event.key === 'c') {
-            reset();
-        } else if (event.key === 'l') {
-            lap();
-        }
+            lapResetTimer();
+        } 
     }
 }
 

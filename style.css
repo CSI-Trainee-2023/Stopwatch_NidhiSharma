@@ -1,19 +1,20 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-
-}
-
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 100px auto;
-}
+    margin: 50px;
+  }
 
-.container {
+  .stopwatch {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #333;
+
+  }
+
+  .container {
     max-width: 400px;
+    align-items: center;
+    flex-direction: column;
     margin: 0 auto;
     padding: 20px;
     background-color: skyblue;
@@ -21,36 +22,19 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.timer {
-    font-size: 48px;
-    margin: 20px 0;
-    color: #333;
-}
-
-.buttons button {
+ button {
     font-size: 18px;
     margin: 5px;
     padding: 10px 20px;
     cursor: pointer;
 }
 
-.buttons button.toggle {
+#startStop {
     background-color: red;
     color: white;
 }
 
-.buttons button.lap {
+#lapReset{
     background-color: green;
-    color: white;
-}
-
-.buttons button.reset {
-    background-color:purple;
-    color: white;
-}
-
-.lapList {
-    list-style-type: none;
-    padding: 0;
     color: white;
 }
