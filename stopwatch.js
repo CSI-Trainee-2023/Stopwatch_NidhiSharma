@@ -4,12 +4,15 @@ let startTime = 0;
 let lapTime = 0;
 
 function startStopTimer() {
-    if (running) {
+    if(running) {
         stopTimer();
-    } else {
+        document.getElementById('startStop').textContent = 'Resume';
+    }else{
         startTimer();
+        document.getElementById('startStop').textContent = 'Stop';
     }
 }
+
 
 function lapResetTimer() {
     if (running) {
